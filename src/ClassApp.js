@@ -4,9 +4,12 @@
 //STEP 4: Add Todo Form
 //STEP 5: Delete Todo Button
 //STEP 6: Render List of Todos (API)
-//STEP 7: Use Hooks
+
+//OPTIONAL: Remake Using Hooks
+//BONUS: ???
 
 import React from 'react';
+import axios from 'axios';
 
 class App extends React.Component {
 
@@ -15,9 +18,17 @@ class App extends React.Component {
         todos: []
     }
   
+    componentDidMount(){
+        axios.get('https://jsonplaceholder.typicode.com/todos?limit=10')
+            .then(res => {
+                const filteredData = res.data.filter(todo => todo.id <= 10)
+                this.setState({ todos: filteredData })
+            })
+    }
+
     handleSubmit = (e) => {
       e.preventDefault()
-      this.setState({ todos: [...this.state.todos, { text: this.state.newTodo, isCompleted: false }], newTodo: '' })
+      this.setState({ todos: [...this.state.todos, { title: this.state.newTodo, completed: false }], newTodo: '' })
     }
 
     setNewTodo = e => {
@@ -26,7 +37,7 @@ class App extends React.Component {
   
     handleComplete = (index) => {
       const newTodos = [...this.state.todos];
-      newTodos[index].isCompleted = true;
+      newTodos[index].completed = true;
       this.setState({ todos: newTodos})
     }
   
@@ -54,7 +65,7 @@ class App extends React.Component {
                         </button>
                     </div>
                     <div>
-                        <li key={index} style={{marginRight: '40px', listStyle: 'none', textDecoration: todo.isCompleted ? 'line-through' : ''}}>{todo.text}</li>
+                        <li key={index} style={{marginRight: '40px', listStyle: 'none', textDecoration: todo.completed ? 'line-through' : ''}}>{todo.title}</li>
                     </div>
                 </div>
             )

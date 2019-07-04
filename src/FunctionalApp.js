@@ -13,8 +13,8 @@ const App = () => {
           <button style={{backgroundColor: 'yellow', marginRight: '40px'}} onClick={() => handleComplete(index)}>complete</button>
         </div>
         <div>
-          <li key={index} style={{marginRight: '40px', listStyle: 'none', textDecoration: todo.isCompleted ? 'line-through' : ''}}>
-            {todo.text}
+          <li key={index} style={{marginRight: '40px', listStyle: 'none', textDecoration: todo.completed ? 'line-through' : ''}}>
+            {todo.title}
           </li>
         </div>
       </div>
@@ -23,13 +23,13 @@ const App = () => {
 
   function handleSubmit(e){
     e.preventDefault()
-    setTodos([...todos, { text: newTodo, isCompleted: false } ])
+    setTodos([...todos, { title: newTodo, completed: false } ])
     setNewTodo('')
   }
 
   function handleComplete(index){
     const newTodos = [...todos];
-    newTodos[index].isCompleted = true;
+    newTodos[index].completed = true;
     setTodos(newTodos)
   }
 
