@@ -13,7 +13,7 @@ const App = () => {
           <button style={{backgroundColor: 'yellow', marginRight: '40px'}} onClick={() => handleComplete(index)}>complete</button>
         </div>
         <div>
-          <li key={index} style={{marginRight: '40px', textDecoration: todo.isCompleted ? 'line-through' : ''}}>
+          <li key={index} style={{marginRight: '40px', listStyle: 'none', textDecoration: todo.isCompleted ? 'line-through' : ''}}>
             {todo.text}
           </li>
         </div>
