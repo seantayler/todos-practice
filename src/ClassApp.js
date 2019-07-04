@@ -19,7 +19,7 @@ class App extends React.Component {
     }
   
     componentDidMount(){
-        axios.get('https://jsonplaceholder.typicode.com/todos?limit=10')
+        axios.get('https://jsonplaceholder.typicode.com/todos')
             .then(res => {
                 const filteredData = res.data.filter(todo => todo.id <= 10)
                 this.setState({ todos: filteredData })
